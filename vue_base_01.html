@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0">
     <title>vue_简单数据绑定、双向绑定、组件化</title>
     <script src="vue2.0.js"></script>
     <style>
@@ -38,7 +39,7 @@
     </style>
 </head>
 <body>
-<!--**********************app_01数据绑定*********************-->
+<!--**********************app_01-数据绑定*********************-->
 <div id="app_01">
     公众号:{{ name}}
 </div>
@@ -50,7 +51,7 @@
         }
     })
 </script>
-<!--**********************app_02双向绑定v-model*********************-->
+<!--**********************app_02-双向绑定v-model*********************-->
 <div id="app_02">
     <input v-model="number">
     <p>数字：{{number}}</p>
@@ -64,7 +65,7 @@
     });
 </script>
 
-<!--**********************app_03组件化*********************-->
+<!--**********************app_03-组件化*********************-->
 <div class="app_03">
     <div class="card">
         <img src="mapIcon.png" alt="">
@@ -85,7 +86,7 @@
         <button>点击进入</button>
     </div>
 </div>
-<!--*****************card组件化*******************-->
+<!--*****************card-组件化*******************-->
 <div id="app_03" class="app_03">
     <card></card>
     <card></card>
