@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue_简单数据绑定、双向绑定、组件化</title>
+    <script src="vue2.0.js"></script>
+    <style>
+        .app_03{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+        .card{
+            border: 1px solid #eee;
+            text-align: center;
+            width: 30%;
+            padding: 8px 0;
+            margin: 10px 0;
+        }
+        .card img{
+            width: 40%;
+            height: 40%;
+            margin: 0 auto;
+        }
+        .card p{
+            color: #ccc;
+            font-size: 10px;
+        }
+        .card button{
+            width: 40%;
+            font-size: 12px;
+            padding: 10px 0;
+            text-align: center;
+            color: white;
+            background-color: #218dfe;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+<!--**********************app_01数据绑定*********************-->
+<div id="app_01">
+    公众号:{{ name}}
+</div>
+<script>
+    let vm_01=new Vue({
+        el:"#app_01",
+        data:{
+            name:"web前端",
+        }
+    })
+</script>
+<!--**********************app_02双向绑定v-model*********************-->
+<div id="app_02">
+    <input v-model="number">
+    <p>数字：{{number}}</p>
+</div>
+<script>
+    let vm_02=new Vue({
+        el:"#app_02",
+        data:{
+            number:"",
+        }
+    });
+</script>
+
+<!--**********************app_03组件化*********************-->
+<div class="app_03">
+    <div class="card">
+        <img src="mapIcon.png" alt="">
+        <h2>web前端Vue</h2>
+        <p>web前端Vue组件，web前端Vue组件</p>
+        <button>点击进入</button>
+    </div>
+    <div class="card">
+        <img src="mapIcon.png" alt="">
+        <h2>web前端Vue</h2>
+        <p>web前端Vue组件，web前端Vue组件</p>
+        <button>点击进入</button>
+    </div>
+    <div class="card">
+        <img src="mapIcon.png" alt="">
+        <h2>web前端Vue</h2>
+        <p>web前端Vue组件，web前端Vue组件</p>
+        <button>点击进入</button>
+    </div>
+</div>
+<!--*****************card组件化*******************-->
+<div id="app_03" class="app_03">
+    <card></card>
+    <card></card>
+    <card></card>
+</div>
+<script>
+    //注册一个名叫card的组件
+    Vue.component('card',{
+        template:`<div class="card">
+        <img src="mapIcon.png" alt="">
+        <h2>web前端Vue</h2>
+        <p>web前端Vue组件，web前端Vue组件</p>
+        <button>点击进入</button>
+    </div>`
+    });
+    new Vue({
+        el:"#app_03"
+    });
+
+</script>
+</body>
+</html>
