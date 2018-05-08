@@ -4,8 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0">
     <title>vue_实例</title>
+    <script src="vue2.0.js"></script>
 </head>
 <body>
-
+<div id="app">
+我是{{name}},
+    今年{{age}}岁
+</div>
+<script>
+    let vm=new Vue({
+        //挂载元素
+        el:'#app',
+        //实例VM的数据
+        data:{
+            name:"张三",
+            age:21
+        }
+    });
+</script>
 </body>
 </html>
