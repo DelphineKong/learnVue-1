@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0">
+    <title>vue_实例的4个常用选项</title>
+    <script src="vue2.0.js"></script>
+</head>
+<body>
+<!--vue_实例的4个常用选项:过滤器filters、计算属性computed、方法methods、观察watch-->
+<div id="app">
+    <!--数字1：{{num1}}<br>-->
+    <!--数字2：{{num2}}<br>-->
+    <!--数字3：{{num3}}<br>-->
+
+    <!--使用filter后-->
+    数字1：{{num1 | toInt}}<br>
+    数字2：{{num2 | toInt}}<br>
+    数字3：{{num3 | toInt}}<br>
+
+    <!--计算属性computed-->
+    总和：{{ sum }}<br>
+
+    <!--把plus方法绑定在按钮上-->
+    {{ a }}
+    <button v-on:click="plus">加1</button>
+</div>
+
+<script>
+    let vm=new Vue({
+        //挂载元素
+        el:'#app',
+        //实例VM的数据
+        data:{
+            num1:33.411,
+            num2:46.212,
+            num3:78.541,
+
+            number1:1,
+            number2:3,
+            number3:6,
+
+            a:0,
+        },
+        //过滤器
+        filters:{
+            //小小数转化为整数
+//            toInt(value){
+//                return parseInt(value);
+//            }
+            //上边函数的另一种写法
+            toInt:function (value) {
+                return parseInt(value);
+            }
+        },
+        //计算属性
+        computed:{
+            sum(){
+                return this.number1+this.number2+this.number3;
+            }
+        },
+        //methods方法
+        methods:{
+            plus(){
+                return this.a++;
+            }
+        },
+        //观察
+        watch:{
+            a(){
+                console.log('有变化，最新值：');
+                console.log(this.a);
+            }
+        }
+
+    });
+</script>
+</body>
+</html>
