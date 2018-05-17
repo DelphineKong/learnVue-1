@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0">
+    <title>在html上绑定实例中的数据</title>
+    <script src="vue2.0.js"></script>
+</head>
+<body>
+<!--************Mustache 语法++绑定纯html++绑定属性++js表达式**************-->
+<!--Mustache 语法就是双大括号{{ }}的写法-->
+<div id="app_01">{{name_01}}</div>
+<script>
+    let app_01=new Vue({
+        el:"#app_01",
+        data:{
+            name_01:"前端君"
+        }
+    });
+</script>
+<!--绑定纯html使用v-html指令-->
+<!--name的值，被解析成html标签，并作为字节点，插入在<div id=”app”></div>中去-->
+<div id="app_02" v-html="name_02"></div>
+<script>
+    let app_02=new Vue({
+        el:"#app_02",
+        data:{
+            name_02:"<strong>前端君</strong>"
+        }
+    });
+</script>
+<!--绑定属性使用v-bind指令,如<a>标签的href属性，<img/>标签的src属性等-->
+<div id="app_03">
+    <!--在href前用v-bind:修饰-->
+    <a v-bind:href="link">hello官网</a><br>
+    <!--v-bind:简洁写法-->
+    <a :href="link">hello官网</a>
+</div>
+<script>
+    let app_03=new Vue({
+        el:"#app_03",
+        data:{
+            link:"http://hello.com"
+        }
+    });
+</script>
+<!--*************v-bind指令的简写***************-->
+<!--
+注：
+当渲染的属性值是布尔值的时候，
+并不是简单地将true或者false渲染出来，
+而是当值为false的时候，属性会被移除
+-->
+<div id="app_04">
+    <!--v-bind:缩写-->
+    <button :disabled="dis_true">我是true</button><br>
+    <button :disabled="dis_false">我是false</button>
+</div>
+<script>
+    let app_04=new Vue({
+        el:"#app_04",
+        data:{
+            dis_true:true,
+            dis_false:false
+        }
+    });
+</script>
+<!--支持javascript表达式-->
+<!--加减乘除-->
+<div id="app_05">{{num+3}}</div>
+<script>
+    let app_05=new Vue({
+        el:"#app_05",
+        data:{
+            num:2
+        }
+    });
+</script>
+<!--三元运算符-->
+<div id="app_06">{{ok?'yes':'no'}}</div>
+<script>
+    let app_06=new Vue({
+        el:"#app_06",
+        data:{
+            ok:true
+        }
+    })
+</script>
+<!--字符串拼接-->
+<div id="app_07">
+    <a :href="'http://'+host">hello官网</a>
+</div>
+<script>
+    let app_07=new Vue({
+        el:"#app_07",
+        data:{
+            host:'hello.com'
+        }
+    });
+</script>
+<!--运算比较简单的情况下用javascript表达式运算，复杂的时候，一定要用vue的computed属性来进行计算-->
+</body>
+</html>

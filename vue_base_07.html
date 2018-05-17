@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0">
+    <title>10个指令(下)</title>
+    <script src="vue2.0.js"></script>
+</head>
+<body>
+<!--******************v-for、v-bind、v-on、v-model、v-once**********************************-->
+<!--06  v-for指令data中的存放的数据是数组Array类型  -->
+<div id="app_06">
+    <div v-for="item in list">{{item}}</div>
+    <!--拿到每个元素的索引-->
+    <div v-for="(item,index) in list">
+        {{index}}.{{item}}
+    </div>
+</div>
+<script>
+    let app_06=new Vue({
+        el:"#app_06",
+        data:{
+            list:['Tom','John','Lisa']
+        }
+    });
+</script>
+<!--07  v-bind指令绑定元素属性  -->
+<div id="app_07">
+    <a v-bind:href="link">hello官网</a>
+    <!--等价于-->
+    <a :href="link">hello官网</a>
+</div>
+<script>
+    let app_07=new Vue({
+        el:"#app_07",
+        data:{
+            link:"http://hello.com"
+        }
+    });
+</script>
+<!--08  v-on指令绑定事件的监听器,配合methods  -->
+<div id="app_08">
+   <button v-on:click="say">点击01</button>
+    <button v-on:click="say('Tom')">点击02</button><br><br><br>
+</div>
+<script>
+    let app_08=new Vue({
+        el:"#app_08",
+        methods:{
+            say(name){
+                console.log('hello,'+name);
+            }
+        }
+    });
+</script>
+<!--09  v-model指令用在表单输入，实现表单控件和数据的双向绑定  -->
+<div id="app_09">
+    <input v-model="msg" type="text">
+    <p>你输入：{{msg}}</p>
+</div>
+<script>
+    let app_09=new Vue({
+        el:"#app_09",
+        data:{
+          msg:''
+        }
+    });
+</script>
+
+<!--10  v-once指令只渲染一次，后面元素中的数据再更新变化，都不会重新渲染  -->
+<div id="app_10">
+    <input v-model="msg" type="text">
+    <p v-once>你输入：{{msg}}</p>
+    <!--
+    msg有了初始值，第一次渲染的时候，input控件和<p>标签都有了内容
+    后期再更新msg的值的时候，<p>标签的内容不会发生改变
+    -->
+</div>
+<script>
+    let app_10=new Vue({
+        el:"#app_10",
+        data:{
+            msg:'hello,world!'
+        }
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0">
+    <title>10个指令(上)</title>
+    <script src="vue2.0.js"></script>
+</head>
+<body>
+<!--/////////////v-text、v-html、v-show、v-if、v-else****区别使用 v-if和v-show 这2个指令///////////////////////////////////////////////-->
+<!--*************01 v-text更新标签包含的文本,作用跟双大括号的效果一样****************-->
+<div id="app_01">
+    <p v-text="msg"></p>
+</div>
+<script>
+    let app_01=new Vue({
+        el:"#app_01",
+        data:{
+            msg:'hello,vue'
+        }
+    })
+</script>
+<!--*************02 v-html 绑定纯html****************-->
+<div id="app_02">
+    <p v-html="msg"></p>
+</div>
+<script>
+    let app_02=new Vue({
+        el:"#app_02",
+        data:{
+            msg:'<b>hello,vue</b>'
+        }
+    })
+</script>
+<!--*************03 v-show 指令的取值为true/false,元素的显示/隐藏 ****************-->
+<div id="app_03">
+    <p v-show="show1">我是true</p>
+    <p v-show="show2">我是false</p>  <!-- display:none-->
+</div>
+<script>
+    let app_03=new Vue({
+        el:"#app_03",
+        data:{
+            show1:true,
+            show2:false
+        }
+    })
+</script>
+<!--*************04 v-if 指令的取值也为true/false,控制元素是否需要被渲染出来 ****************-->
+<div id="app_04">
+    <p v-if="if_1">我是true</p>
+    <p v-if="if_2">我是true</p>  <!-- 被一行注释代替,不被解析渲染出来-->
+</div>
+<script>
+    let app_04=new Vue({
+        el:"#app_04",
+        data:{
+            if_1:true,
+            if_2:false
+        }
+    })
+</script>
+<!--
+注：
+如果需要频繁切换显示/隐藏的，就用 v-show ；
+如果运行后不太可能切换显示/隐藏的，就用 v-if
+-->
+<!--*************05 v-else 要求前一个兄弟节点必须要使用 v-if 指令,只有一个会被渲染出来****************-->
+<div id="app_05">
+    <p v-if="if_1">我是if</p>  <!-- 直接被忽视了，不渲染-->
+    <p v-else>我是else</p>
+</div>
+<script>
+    let app_05=new Vue({
+        el:"#app_05",
+        data:{
+            if_1:false
+        }
+    })
+</script>
+
+
+</body>
+</html>

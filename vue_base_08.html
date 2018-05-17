@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0">
+    <title>组件</title>
+    <script src="vue2.0.js"></script>
+    <style>
+        .unit {
+            width: auto;
+            display: flex;
+            align-items: center;
+            border: 1px solid #eeeeee;
+        }
+
+        .content {
+
+        }
+
+        .info {
+            color: #cccccc;
+        }
+
+        .original {
+            border: 1px solid #cccccc;
+            text-align: center;
+            padding: 1px 6px;
+            border-radius: 15px;
+        }
+
+        .unit img {
+            width: 150px;
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!--把detail理解成一个形参，article相当于实参。-->
+    <my-article  v-for="item in articles" :detail="item"></my-article>
+</div>
+<script>
+//    <!--使用了vue提供的全局API  Vue.component() ，
+//    注册了一个名为：“my-article”的组件-->
+    Vue.component('my-article',{
+//       组件的传参props
+        props:['detail'],
+        template:'<div class="unit">\n' +
+        '    <div class="content">\n' +
+        '        <h1>{{detail.title}}</h1>\n' +
+        '        <div class="info">\n' +
+        '            <span>{{detail.date}}</span>\n' +
+        '            <span class="original" v-show="detail.is_original">原创</span>\n' +
+        '        </div>\n' +
+        '    </div>\n' +
+        '    <img :src="detail.cover_url" alt="">\n' +
+        '</div>'
+    })
+//一定要确保实例vm在创建之前， <my-article> 组件已经被成功注册，
+    // 这也是为什么我们要把代码写在实例化之前
+    let vm=new Vue({
+        el:"#app",
+        data:{
+            articles:[
+                {
+                    title:"第一节：Vue.js框架是什么，为什么选择它？",
+                    date:"2017年03月06日",
+                    is_original:true,
+                    cover_url:"mapIcon.png"
+                },
+                {
+                    title:"第二节：Vue.js框架是什么，为什么选择它？",
+                    date:"2017年04月06日",
+                    is_original:true,
+                    cover_url:"mapIcon.png"
+                },
+                {
+                    title:"第三节：Vue.js框架是什么，为什么选择它？",
+                    date:"2017年05月06日",
+                    is_original:true,
+                    cover_url:"mapIcon.png"
+                },
+                {
+                    title:"第四节：Vue.js框架是什么，为什么选择它？",
+                    date:"2017年06月06日",
+                    is_original:true,
+                    cover_url:"mapIcon.png"
+                }
+            ]
+        }
+    })
+</script>
+
+
+</body>
+</html>

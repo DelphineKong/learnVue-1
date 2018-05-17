@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0">
+    <title>vue实例的生命周期</title>
+    <script src="vue2.0.js"></script>
+</head>
+<body>
+<!--vue实例的生命周期:
+beforeCreate、created、创建
+beforeMount、mounted、挂载
+beforeUpdate、updated、更新
+beforeDestroy、destroyed、销毁
+actived激活、deactivated停用、
+-->
+<div id="app_01" ref="app_01">{{name_01}}</div>
+<script>
+    let app_01 = new Vue({
+        el: "#app_01",
+        data: {
+            name_01: "前端君"
+        },
+        beforeCreate() {
+            console.log("即将创建");
+            console.log(this.data);
+            console.log(this.el);
+        },
+        created() {
+            console.log("创建完毕");
+            console.log(this.$data);
+            console.log(this.$el);
+        },
+        beforeMount() {
+            console.log("即将挂载");
+            console.log(this.$el);
+        },
+        mounted() {
+            console.log("挂载完毕");
+            console.log(this.$el);
+        },
+//        html片段代码我们加上ref属性，用于获取DOM元素
+        beforeUpdate() {
+            console.log("=即将更新渲染=");
+            let name_01 = this.$refs.app_01.innerHTML;
+            console.log('name：' + name_01);
+        },
+//        在控制台把app.name的值从原来的 “前端君” 修改成 “web前端教程”,控制台name_01结果依然为原来的值,视图并未重新渲染更新。
+        updated() {
+            console.log("=更新成功=");
+            let name_01 = this.$refs.app_01.innerHTML;
+            console.log('name：' + name_01);
+        },
+        beforeDestroy(){
+            console.log('销毁前')
+        },
+        destroyed(){
+            console.log('销毁成功')
+        },
+//        销毁成功,视图不会再更新
+    })
+</script>
+
+
+</body>
+</html>

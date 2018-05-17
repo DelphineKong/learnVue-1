@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0">
+    <title>组件之间的通信</title>
+    <script src="vue2.0.js"></script>
+</head>
+<body>
+<!-- 父组件——>子组件 -->
+<div id="app_father">
+    <son :message="msg"></son>
+</div>
+<script>
+    Vue.component('son', {
+        props: ['message'],
+        template: '<div>{{message}}</div>'
+    });
+
+    const app_father = new Vue({
+        el: "#app_father",
+        data: {
+            msg: "我是父组件的数据"
+        }
+    });
+
+</script>
+
+<!-- 子组件——>父组件 需要使用组建的 “自定义事件”-->
+<div id="app_father_02">
+    <son02 @connect="say"></son02>
+</div>
+<script>
+    Vue.component('son02', {
+        template: '<button @click:"send">点击</button>',
+        data() {
+            return {
+                msg: '我是子组件的数据'
+            }
+        },
+        methods: {
+            send() {
+                this.$emit('connect',this.msg);
+            }
+        }
+    });
+
+    const app_father_02 = new Vue({
+        el: "#app_father_02",
+        methods: {
+            say(msg) {
+                console.log(msg);
+            }
+        }
+    })
+</script>
+</body>
+</html>
